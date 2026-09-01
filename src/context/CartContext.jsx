@@ -1,6 +1,6 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useState } from 'react'
 
-const CartContext = createContext(null)
+export const CartContext = createContext()
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([])
@@ -31,37 +31,24 @@ export function CartProvider({ children }) {
     setCartItems([])
   }
 
-  const totalItems = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
-    [cartItems],
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
   )
 
-  const totalPrice = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [cartItems],
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        totalItems,
+        totalPrice,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   )
-
-  const value = useMemo(
-    () => ({
-      cartItems,
-      addToCart,
-      removeFromCart,
-      clearCart,
-      totalItems,
-      totalPrice,
-    }),
-    [cartItems, totalItems, totalPrice],
-  )
-
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
-}
-
-export function useCart() {
-  const context = useContext(CartContext)
-
-  if (!context) {
-    throw new Error('useCart must be used inside CartProvider')
-  }
-
-  return context
 }

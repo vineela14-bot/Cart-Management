@@ -1,7 +1,8 @@
-import { useCart } from '../context/CartContext'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
 export default function Product({ product }) {
-  const { addToCart } = useCart()
+  const { addToCart } = useContext(CartContext)
 
   return (
     <article className="product-card">

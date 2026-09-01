@@ -1,7 +1,8 @@
-import { useCart } from '../context/CartContext'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
 export default function Cart() {
-  const { cartItems, removeFromCart, clearCart, totalPrice } = useCart()
+  const { cartItems, removeFromCart, clearCart, totalPrice } = useContext(CartContext)
 
   return (
     <section className="cart-panel">
