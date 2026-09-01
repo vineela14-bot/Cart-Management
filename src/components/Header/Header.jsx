@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { CartContext } from '../context/CartContext'
+import { CartContext } from '../../context/CartContext'
+import './Header.css'
 
 export default function Header() {
   const { totalItems } = useContext(CartContext)

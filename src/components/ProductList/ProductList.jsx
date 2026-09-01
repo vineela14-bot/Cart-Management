@@ -1,4 +1,5 @@
-import Product from './Product'
+import Product from '../Product/Product.jsx'
+import './ProductList.css'
 
 const products = [
   { id: 1, name: 'Laptop', price: 50000 },

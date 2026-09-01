@@ -1,0 +1,19 @@
+.product-list {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  background: #fafafa;
+  box-sizing: border-box;
+  min-height: 320px;
+}
+
+.product-list h2 {
+  margin: 0 0 18px;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.product-grid {
+  display: grid;
+  gap: 16px;
+}
